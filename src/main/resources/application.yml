@@ -1,0 +1,53 @@
+
+server:
+  port: 9090
+  servlet:
+    context-path: /
+  tomcat:
+    uri-encoding: UTF-8
+    max-threads: 1000
+    min-spare-threads: 30
+
+spring:
+  # 数据源
+  datasource:
+    url: jdbc:mysql://39.101.222.175:3306/activiti?useSSL=false&useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
+    username: root
+    password: wfm542171065
+    driverClassName: com.mysql.cj.jdbc.Driver
+  # 工作流
+  activiti:
+    check-process-definitions: false
+    db-identity-used: true
+    # 自动生成Activiti相关表 第一次生成后建议关闭提高运行速度
+    database-schema-update: true
+    history-level: full
+  # jackson
+  jackson:
+    time-zone: GMT+8
+    serialization:
+      fail-on-empty-beans: false
+  mvc:
+    # 应该以什么样的路径来访问静态资源,这表示只有静态资源的访问路径为/static/ 时才会处理(如http://localhost:8080/static/css/base.css)
+    static-path-pattern: /**
+  resources:
+    #用于告诉Spring Boot应该在何处查找静态资源文件,查找文件时会依赖于配置的先后顺序依次进行
+    static-locations: classpath:/META-INF/resources/,classpath:/resources/,classpath:/static/,classpath:/public/
+
+# Mybatis-plus
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*.xml
+  type-aliases-package: com.example.activiti.**.entity #实体扫描，多个package用逗号或者分号分隔
+  # 启动时是否检查MyBatis XML文件是否存在
+  check-config-location: true
+  # MyBatis原生配置
+  configuration:
+    # 字段名称下划线转驼峰命名
+    map-underscore-to-camel-case: true
+  global-config:
+    db-config:
+      id-type: ID_WORKER
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
