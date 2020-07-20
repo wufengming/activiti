@@ -9,7 +9,7 @@ RUN mkdir /home/app && \
 # VOLUME /home/app/activiti/log
 WORKDIR /home/app/activiti
 
-ADD /home/jenkins/workspace/activiti/target/activiti-0.0.1-SNAPSHOT.jar /home/app/activiti/activiti.jar
+ADD /var/jenkins_home/workspace/activiti/target/activiti-0.0.1-SNAPSHOT.jar /home/app/activiti/activiti.jar
 
 # ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
 ENV APP_PROFILE="prod"
