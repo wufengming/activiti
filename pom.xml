@@ -132,12 +132,25 @@
     </dependencies>
 
     <build>
+        <finalName>activiti</finalName>
+        <pluginManagement>
+            <plugins>
+
+            </plugins>
+        </pluginManagement>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <!--打包时去除第三方依赖-->
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+
         </plugins>
+
     </build>
 
 </project>

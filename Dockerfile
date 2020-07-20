@@ -9,12 +9,10 @@ RUN mkdir /home/app && \
 # VOLUME /home/app/activiti/log
 WORKDIR /home/app/activiti
 
-ADD ./target/activiti-0.0.1-SNAPSHOT.jar /home/app/activiti/activiti.jar
+ADD /home/jenkins/workspace/activiti/target/activiti-0.0.1-SNAPSHOT.jar /home/app/activiti/activiti.jar
 
 # ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
 ENV APP_PROFILE="prod"
-
-# CMD sleep 20;java $JAVA_OPTS -jar activiti-0.0.1-SNAPSHOT.jar --spring.profiles.active=$APP_PROFILE -Dfile.encoding=utf-8
 
 ENTRYPOINT ["java","-Djava.security.egd=file:/dev/./urandom","-jar","/home/app/activiti/activiti.jar --spring.profiles.active=$APP_PROFILE -Dfile.encoding=utf-8"]
 
